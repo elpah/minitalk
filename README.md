@@ -30,12 +30,12 @@ The client takes a string as an argument and sends it to the server's process us
 
 minitalk/  
 │  
-├── client.c        # Client-side implementation  
-├── server.c        # Server-side implementation  
-├── minitalk.h      # Header file  
-├── Makefile        # Compilation instructions  
-├── libft/          # Custom utility functions library  
-└── printf/         # Custom printf implementation  
+├── client.c  
+├── server.c  
+├── minitalk.h  
+├── Makefile  
+├── libft/  
+└── printf/  
 
 
 
