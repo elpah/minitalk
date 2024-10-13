@@ -6,7 +6,7 @@
 /*   By: eobeng <eobeng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:50:54 by eobeng            #+#    #+#             */
-/*   Updated: 2024/10/13 12:03:52 by eobeng           ###   ########.fr       */
+/*   Updated: 2024/10/13 12:04:14 by eobeng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,28 @@ static void	incoming_signals(int signal, siginfo_t *info, void *context)
 		c = 0;
 	}
 }
+int	main(void)
+{
+	struct sigaction	signal;
+
+	ft_printf("Server started with PID %d\n", getpid());
+	ft_printf("Message:");
+
+	// Initialize sigaction struct
+	ft_memset(&signal, 0, sizeof(signal));
+	signal.sa_flags = SA_RESTART | SA_SIGINFO;
+	sigemptyset(&signal.sa_mask); // Initialize signal mask
+	signal.sa_sigaction = incoming_signals;
+
+	if (sigaction(SIGUSR1, &signal, NULL) == -1)
+		ft_printf("ERROR SIGUSR1\n");
+
+	if (sigaction(SIGUSR2, &signal, NULL) == -1)
+		ft_printf("ERROR SIGUSR2\n");
+
+	while (1)
+		pause();
+
+	return (0);
+}
+
